@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8"> <!-- UTF-8 или Windows-1251 -->
+	<title>1.1 task</title>
+</head>
+
+<body>
+	<h1>Теорема Пифагора</h1>
+	<p>Определение <strong>теоремы Пифагора</strong>:</p>
+	<p>В <strong>прямоугольном треугольнике</strong> квадрат длины <em>гипотенузы</em> равен сумме квадратов длин
+		<em>катетов</em>.
+	</p>
+	<p><strong>Гипотенуза</strong> &ndash; сторона, лежащая <em>напротив</em> прямого угла.</p>
+	<p><strong>Катет</strong> &ndash; одна из двух сторон, <em>образующих</em> прямой угол.</p>
+	<p><strong>Формула теоремы Пифагора</strong> выглядит так:</p>
+	<p><var>a<sup>2</sup></var>+<var>b<sup>2</sup></var>=<var>c<sup>2</sup></var></p>
+	<p>где a, b &ndash; <em>катеты</em>, c &ndash; <em>гипотенуза</em>.</p>
+	<p>Также верна и <strong>теорема, обратная теореме Пифагора</strong>:</p>
+	<p>Если сумма квадратов катетов двух сторон треугольника равна квадрату третьей стороны, то такой треугольник
+		является <em>прямоугольным</em>.</p>
+	<p><em>Программа на си</em>, вычисляющая <strong>длину гипотенузы</strong>:</p>
+	<code>
+		#include &lt;stdio.h&gt; <br />
+		#include &lt;math.h&gt; <br />
+		<br />
+		int main() { <br />
+			int a, b; <br />
+			scanf_s("%d %d", &a, &b); <br />
+			printf("%.2lf", sqrt(a * a + b * b)); <br />
+			return 0; <br />
+		}
+	</code>
+</body>
+
+</html>
