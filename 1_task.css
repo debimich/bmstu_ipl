@@ -1,0 +1,36 @@
+h1 {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-style: italic;
+}
+
+p.c1 {
+	color: red;
+}
+
+*.c1 {
+	color: green;
+}
+
+#i1 {
+	font-size: 50px;
+}
+
+p em {
+	font-size: 20px;
+}
+
+p[class] {
+	font-style: oblique;
+}
+
+a:link {
+	color: blue;
+}
+
+a:visited {
+	color: red;
+}
+
+a:hover {
+	color: gold;
+}
