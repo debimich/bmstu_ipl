@@ -1,0 +1,48 @@
+h1 {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.div-table {
+	display: table;
+	border: 1px solid black;
+}
+
+.div-table-header {
+	font-weight: 800;
+	font-size: 18px;
+}
+
+.div-table-row {
+	display: table-row;
+}
+
+.div-table-cell {
+	display: table-cell;
+	padding: 10px;
+	border: 1px solid black;
+}
+
+.subject {
+	font-style: italic;
+}
+
+.first-col {
+	border-top: 0px;
+	border-bottom: 0px;
+}
+
+#first-row {
+	border-top: 1px solid black;
+}
+
+#last-row {
+	border-bottom: 1px solid black;
+}
+
+#fw {
+	background-color: antiquewhite;
+}
+
+#sw {
+	background-color: lightskyblue;
+}
