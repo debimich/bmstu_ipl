@@ -22,3 +22,11 @@ footer {
 	background-color: greenyellow;
 	color: white;
 }
+
+#tab1 td {
+	border: 1px solid black;
+}
+
+#tab1 th 	{
+	border: 1px solid black;
+}
