@@ -19,7 +19,7 @@ footer {
 }
 
 .my-primary {
-	background-color: greenyellow;
+	background-color: blue;
 	color: white;
 }
 
@@ -27,6 +27,6 @@ footer {
 	border: 1px solid black;
 }
 
-#tab1 th 	{
+#tab1 th {
 	border: 1px solid black;
 }
