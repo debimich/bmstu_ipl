@@ -1,0 +1,14 @@
+.costCell:hover {
+	background-color: antiquewhite;
+}
+
+table {
+	margin: 10px 0px;
+	border: 1px solid black;
+}
+
+th,
+td {
+	padding: 5px;
+	border: 1px solid black;
+}
