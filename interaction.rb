@@ -20,7 +20,25 @@ elsif part == 2
     salaries[i - 1] = gets.chomp.to_f
   end
   obj = Payroll.new(names, salaries)
+  puts "\nФамилия работника, зарплата которого наименее отклоняется от средней зарплаты всех работников:"
   puts obj.find_least_deviation_worker
+  puts "\nФамилии двух работников с наибольшей зарплатой:"
   puts obj.find_two_highest_salary_workers
+  puts "\nУдаленный работник с наименьшей зарплатой:"
   puts obj.remove_min_salary_worker
+elsif part == 3
+  puts "Введите количество строк:"
+  number_of_lines = gets.chomp.to_i
+  input_lines = []
+  number_of_lines.times do |i|
+    puts "Введите строку #{i + 1}:"
+    input_line = gets.chomp
+    input_lines << input_line
+  end
+  string_corrector = StringCorrector.new(input_lines)
+  original, corrected = string_corrector.process_sequence
+  puts "\nИсходная последовательность строк:"
+  puts original
+  puts "\nСкорректированная последовательность строк:"
+  puts corrected
 end

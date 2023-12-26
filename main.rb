@@ -29,8 +29,8 @@ class Payroll
 
   def find_least_deviation_worker
     return "Нет работников" if salaries.empty?
-    average_salary = salaries.compact.sum / salaries.compact.length.to_f
-    least_deviation_index = salaries.index(salaries.compact.min_by { |salary| (salary - average_salary).abs })
+    average_salary = salaries.sum / salaries.length.to_f
+    least_deviation_index = salaries.index(salaries.min_by { |salary| (salary - average_salary).abs })
     return names[least_deviation_index]
   end
 
@@ -44,9 +44,8 @@ class Payroll
     salaries_copy.delete_at(first_max_salary_index)
     return "Работников меньше двух" if names_copy.empty?
     second_max_salary_index = salaries_copy.index(salaries_copy.max)
-    second_highest_salary_name = names[second_max_salary_index]
+    second_highest_salary_name = names_copy[second_max_salary_index]
     return first_highest_salary_name, second_highest_salary_name
-
   end
 
   def remove_min_salary_worker
@@ -57,5 +56,24 @@ class Payroll
     names.delete_at(min_salary_index)
     salaries.delete_at(min_salary_index)
     return min_salary_name, min_salary
+  end
+end
+
+class StringCorrector
+  attr_accessor :input_sequence
+
+  def initialize(input_sequence)
+    @input_sequence = input_sequence
+  end
+
+  def correct_string(input_string)
+    corrected_string = input_string.strip # Удаляет пробелы в начале и в конце строки
+    corrected_string = corrected_string.split(/\s+/).reject { |word| word.length == 1 }.join(' ') # \s+ - любой пробельный символ, повторяющийся один и более раз
+    return corrected_string
+  end
+
+  def process_sequence
+    corrected_sequence = input_sequence.map { |line| correct_string(line) }
+    return input_sequence, corrected_sequence
   end
 end
