@@ -2,7 +2,6 @@ require 'minitest/autorun'
 require_relative 'main.rb'
 
 class Test < Minitest::Test
-
   def test_first
     10.times do
       x = rand(-10.0..10.0)
@@ -14,7 +13,7 @@ class Test < Minitest::Test
   end
 
   def test_Payroll1
-    names = ['Alice', 'Bob', 'Charlie', 'David', 'Eva']
+    names = %w[Alice Bob Charlie David Eva]
     salaries = [5000, 6000, 4500, 7000, 5500]
 
     payroll = Payroll.new(names, salaries)
@@ -27,7 +26,7 @@ class Test < Minitest::Test
     assert_instance_of Array, result2
     assert_includes names, result2[0]
     assert_includes names, result2[1]
-    assert_equal ['David', 'Bob'], result2
+    assert_equal %w[David Bob], result2
 
     result3 = payroll.remove_min_salary_worker
     assert_instance_of Array, result3
@@ -35,7 +34,7 @@ class Test < Minitest::Test
   end
 
   def test_Payroll2
-    names = ['Frank', 'Grace', 'Henry', 'Isabel', 'Jack']
+    names = %w[Frank Grace Henry Isabel Jack]
     salaries = [8000, 5500, 6200, 7200, 4900]
 
     payroll = Payroll.new(names, salaries)
@@ -48,7 +47,7 @@ class Test < Minitest::Test
     assert_instance_of Array, result2
     assert_includes names, result2[0]
     assert_includes names, result2[1]
-    assert_equal ['Frank', 'Isabel'], result2
+    assert_equal %w[Frank Isabel], result2
 
     result3 = payroll.remove_min_salary_worker
     assert_instance_of Array, result3
@@ -56,7 +55,7 @@ class Test < Minitest::Test
   end
 
   def test_Payroll3
-    names = ['Kelly', 'Liam', 'Mia', 'Nathan', 'Olivia']
+    names = %w[Kelly Liam Mia Nathan Olivia]
     salaries = [5300, 6800, 7200, 6000, 5500]
 
     payroll = Payroll.new(names, salaries)
@@ -69,7 +68,7 @@ class Test < Minitest::Test
     assert_instance_of Array, result2
     assert_includes names, result2[0]
     assert_includes names, result2[1]
-    assert_equal ['Mia', 'Liam'], result2
+    assert_equal %w[Mia Liam], result2
 
     result3 = payroll.remove_min_salary_worker
     assert_instance_of Array, result3
@@ -78,12 +77,12 @@ class Test < Minitest::Test
 
   def Test_StringCorrector
     corrector = StringCorrector.new([])
-    input_string = "  A  B C D E   "
+    input_string = '  A  B C D E   '
     corrected_string = corrector.correct_string(input_string)
-    assert_equal "A B C D E", corrected_string
-    input_string = " X Y Z "
+    assert_equal 'A B C D E', corrected_string
+    input_string = ' X Y Z '
     corrected_string = corrector.correct_string(input_string)
-    assert_equal "", corrected_string
+    assert_equal '', corrected_string
     input_sequence = 10.times.map { (('A'..'Z').to_a + [' ', ' ', ' ']).sample(rand(1..10)).join(' ') }
     corrector.input_sequence = input_sequence
     original_sequence, corrected_sequence = corrector.process_sequence

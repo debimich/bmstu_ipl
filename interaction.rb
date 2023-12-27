@@ -1,6 +1,6 @@
-require_relative "main.rb"
+require_relative 'main.rb'
 
-puts "Какая часть?"
+puts 'Какая часть?'
 part = gets.chomp.to_i
 
 if part == 1
