@@ -1,94 +1,56 @@
+# frozen_string_literal: true
+
 require 'minitest/autorun'
 require_relative 'main.rb'
 
+# Test class to check the functionality of the main methods.
 class Test < Minitest::Test
-  def test_first
-    10.times do
-      x = rand(-10.0..10.0)
-      m = First.new(x)
-      result = m.calculate.round(3)
-      expected_result = Math.sqrt((Math.sin(8 * x).abs + 17) / (1 - Math.sin(4 * x) * Math.cos(x**2 + 18))**2).round(3)
-      assert_equal(expected_result, result)
-    end
+  include Math
+  def test_first_calculate_sum
+    obj = First.new
+    result = obj.calculate_sum(1e-4)
+    assert_in_epsilon 2.0, result, 1e-4
+    result = obj.calculate_sum(1e-5)
+    assert_in_epsilon 2.0, result, 1e-5
   end
 
-  def test_Payroll1
-    names = %w[Alice Bob Charlie David Eva]
-    salaries = [5000, 6000, 4500, 7000, 5500]
-
-    payroll = Payroll.new(names, salaries)
-    result1 = payroll.find_least_deviation_worker
-    assert_instance_of String, result1
-    assert_includes names, result1
-    assert_equal 'Eva', result1
-
-    result2 = payroll.find_two_highest_salary_workers
-    assert_instance_of Array, result2
-    assert_includes names, result2[0]
-    assert_includes names, result2[1]
-    assert_equal %w[David Bob], result2
-
-    result3 = payroll.remove_min_salary_worker
-    assert_instance_of Array, result3
-    assert_equal ['Charlie', 4500], result3
+  def test_first_calculate_sum_with_epsilon
+    obj = First.new
+    result = obj.calculate_sum_with_epsilon
+    assert_in_epsilon 2.0, result[0], 1e-4
+    assert_in_epsilon 2.0, result[1], 1e-5
   end
 
-  def test_Payroll2
-    names = %w[Frank Grace Henry Isabel Jack]
-    salaries = [8000, 5500, 6200, 7200, 4900]
-
-    payroll = Payroll.new(names, salaries)
-    result1 = payroll.find_least_deviation_worker
-    assert_instance_of String, result1
-    assert_includes names, result1
-    assert_equal 'Henry', result1
-
-    result2 = payroll.find_two_highest_salary_workers
-    assert_instance_of Array, result2
-    assert_includes names, result2[0]
-    assert_includes names, result2[1]
-    assert_equal %w[Frank Isabel], result2
-
-    result3 = payroll.remove_min_salary_worker
-    assert_instance_of Array, result3
-    assert_equal ['Jack', 4900], result3
+  def test_second_calculate_sum
+    obj = Second.new
+    result = obj.calculate_sum(1e-4)
+    assert_in_epsilon 2.0, result, 1e-4
+    result = obj.calculate_sum(1e-5)
+    assert_in_epsilon 2.0, result, 1e-5
   end
 
-  def test_Payroll3
-    names = %w[Kelly Liam Mia Nathan Olivia]
-    salaries = [5300, 6800, 7200, 6000, 5500]
-
-    payroll = Payroll.new(names, salaries)
-    result1 = payroll.find_least_deviation_worker
-    assert_instance_of String, result1
-    assert_includes names, result1
-    assert_equal 'Nathan', result1
-
-    result2 = payroll.find_two_highest_salary_workers
-    assert_instance_of Array, result2
-    assert_includes names, result2[0]
-    assert_includes names, result2[1]
-    assert_equal %w[Mia Liam], result2
-
-    result3 = payroll.remove_min_salary_worker
-    assert_instance_of Array, result3
-    assert_equal ['Kelly', 5300], result3
+  def test_second_calculate_sum_with_epsilon
+    obj = Second.new
+    result = obj.calculate_sum_with_epsilon
+    assert_in_epsilon 2.0, result[0], 1e-4
+    assert_in_epsilon 2.0, result[1], 1e-5
   end
 
-  def Test_StringCorrector
-    corrector = StringCorrector.new([])
-    input_string = '  A  B C D E   '
-    corrected_string = corrector.correct_string(input_string)
-    assert_equal 'A B C D E', corrected_string
-    input_string = ' X Y Z '
-    corrected_string = corrector.correct_string(input_string)
-    assert_equal '', corrected_string
-    input_sequence = 10.times.map { (('A'..'Z').to_a + [' ', ' ', ' ']).sample(rand(1..10)).join(' ') }
-    corrector.input_sequence = input_sequence
-    original_sequence, corrected_sequence = corrector.process_sequence
-    corrected_sequence.each do |corrected_string|
-      assert_equal corrected_string, corrector.correct_string(corrected_string)
-    end
-    assert_equal input_sequence, original_sequence
+  def test_third_trap_f
+    t = Third.new
+    result = t.trap(0, 1, 100) { |x| x**2 }
+    assert_in_epsilon 0.33333, result, 1e-4
+  end
+
+  def test_third_trap_s
+    t = Third.new
+    result = t.trap(-1, 4, 100) { |x| x + cos(x) }
+    assert_in_epsilon 7.58465, result, 1e-4
+  end
+
+  def test_third_trap_t
+    t = Third.new
+    result = t.trap(1, 2, 100) { |x| tan(x + 1) / (x + 1) }
+    assert_in_epsilon(-0.37689, result, 1e-4)
   end
 end
