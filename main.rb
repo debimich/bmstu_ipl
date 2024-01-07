@@ -1,57 +1,59 @@
 # frozen_string_literal: true
 
-# Class for performing calculations of series sums
+# Class that generate new file and count two char words
 class First
-  def calculate_sum(epsilon)
-    sum = 0
-    term = 1.0
-
-    while term >= epsilon
-      sum += term
-      term /= 2.0
-    end
-
-    sum
-  end
-
-  def calculate_sum_with_epsilon
-    [calculate_sum(1e-4), calculate_sum(1e-5)]
-  end
-end
-
-# Class for performing calculations of series sums with Enumerator
-class Second
-  def calculate_sum(epsilon)
-    list = Enumerator.new do |yielder|
-      sum = 0.0
-      prev = counter = 0.5
-
-      loop do
-        yielder.yield sum, prev, counter
-
-        prev = sum
-        sum += 1.0 / (counter *= 2)
+  def generate_random_file
+    File.open('F.txt', 'w') do |file|
+      rand(10..15).times do
+        random_word = rand(1..10).times.map { ('a'..'z').to_a.sample(rand(1..20)).join }.join(' ')
+        file.puts(random_word)
       end
     end
-    list.take_while { |sum, prev| (prev - sum).abs > epsilon }.last[0]
   end
 
-  def calculate_sum_with_epsilon
-    [calculate_sum(1e-4), calculate_sum(1e-5)]
+  def count_two_char_words
+    words_count = 0
+    File.open('F.txt', 'r') do |file|
+      while (line = file.gets)
+        line.split.each { |word| words_count += 1 if word.length == 2 }
+      end
+    end
+    words_count
   end
 end
 
-# Class for performing calculations of integration
-class Third
-  include Math
-  def trap(left, right, num, &block)
-    h = (right - left) / num.to_f
-    result = (block.call(left) + block.call(right)) / 2.0
+# Class Board
+class Board
+  attr_accessor :length, :width
 
-    1.upto(num - 1) do |i|
-      result += block.call(left + i * h)
-    end
+  def initialize(length, width)
+    @length = length
+    @width = width
+  end
 
-    result *= h
+  def area
+    @length * @width
+  end
+
+  def param_return
+    puts "Доска: длина - #{@length}, ширина - #{@width}"
+  end
+end
+
+# Class Box
+class Box < Board
+  attr_accessor :height
+
+  def initialize(length, width, height)
+    super(length, width)
+    @height = height
+  end
+
+  def volume
+    @length * @width * @height
+  end
+
+  def param_return
+    puts "Ящик: длина - #{@length}, ширина - #{@width}, высота - #{@height}"
   end
 end

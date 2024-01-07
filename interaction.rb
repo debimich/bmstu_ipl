@@ -2,45 +2,23 @@
 
 require_relative 'main.rb'
 
-# Define a InteractionModule where the Math module is included.
-module InteractionModule
-  include Math
+puts 'Какая часть?'
+part = gets.chomp.to_i
 
-  puts 'Какая часть?'
-  part = gets.chomp.to_i
-
-  if part == 1
-    obj = First.new
-    puts "\nРезультат суммы при epsilon = 1e-4:"
-    puts obj.calculate_sum_with_epsilon[0]
-    puts "\nРезультат суммы при epsilon = 1e-5:"
-    puts obj.calculate_sum_with_epsilon[1]
-  elsif part == 2
-    obj = Second.new
-    puts "\nРезультат суммы при epsilon = 1e-4:"
-    puts obj.calculate_sum_with_epsilon[0]
-    puts "\nРезультат суммы при epsilon = 1e-5:"
-    puts obj.calculate_sum_with_epsilon[1]
-  elsif part == 3
-    obj = Third.new
-
-    puts 'Введите число отрезков разбиения:'
-    n = gets.chomp.to_f
-
-    puts 'Функция x + cos(x)'
-    func = ->(x) { x + Math.cos(x) }
-    result_lambda = obj.trap(-1, 4, n, &func)
-    puts "Результат с использованием lambda: #{result_lambda}"
-
-    result_block = obj.trap(-1, 4, n) { |x| x + Math.cos(x) }
-    puts "Результат с использованием блока: #{result_block}"
-
-    puts 'Функция tan(x + 1)/(x + 1)'
-    func = ->(x) { Math.tan(x + 1) / (x + 1) }
-    result_lambda = obj.trap(1, 2, n, &func)
-    puts "Результат с использованием lambda: #{result_lambda}"
-
-    result_block = obj.trap(1, 2, n) { |x| Math.tan(x + 1) / (x + 1) }
-    puts "Результат с использованием блока: #{result_block}"
-  end
+if part == 1
+  obj = First.new
+  obj.generate_random_file
+  puts 'Количетсво слов состоящих из двух символов:'
+  puts obj.count_two_char_words
+elsif part == 2
+  puts 'Введите длину и ширину доски:'
+  param = gets.chomp.split.map(&:to_i)
+  obj1 = Board.new(param[0], param[1])
+  puts "Площадь доски: #{obj1.area}"
+  obj1.param_return
+  puts "\nВведите длину, ширину и высоту ящика:"
+  param = gets.chomp.split.map(&:to_i)
+  obj2 = Box.new(param[0], param[1], param[2])
+  puts "Объем ящика: #{obj2.volume}"
+  obj2.param_return
 end
