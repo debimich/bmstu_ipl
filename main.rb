@@ -6,7 +6,7 @@ class First
     sum = 0
     term = 1.0
 
-    while term >= epsilon
+    until term < epsilon
       sum += term
       term /= 2.0
     end
